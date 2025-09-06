@@ -1,0 +1,49 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "export": "Exportar",
+    "import": "Importar"
+  },
+  "auth": {
+    "login": "Iniciar Sesión",
+    "logout": "Cerrar Sesión",
+    "signup": "Registrarse",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "resetPassword": "Restablecer Contraseña",
+    "fullName": "Nombre Completo",
+    "welcomeBack": "Bienvenido de nuevo",
+    "createAccount": "Crear tu cuenta",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "dontHaveAccount": "¿No tienes una cuenta?"
+  },
+  "dashboard": {
+    "title": "Panel",
+    "overview": "Resumen",
+    "revenue": "Ingresos",
+    "expenses": "Gastos",
+    "profit": "Beneficio",
+    "cashFlow": "Flujo de Caja",
+    "monthlyRevenue": "Ingresos Mensuales",
+    "monthlyExpenses": "Gastos Mensuales",
+    "profitMargin": "Margen de Beneficio",
+    "recentTransactions": "Transacciones Recientes"
+  },
+  "marketing": {
+    "hero": {
+      "title": "Transforma Tu Futuro Financiero",
+      "subtitle": "Dashboard financiero profesional y plataforma de previsión diseñada para empresas en crecimiento",
+      "cta": "Iniciar Prueba Gratuita",
+      "watchDemo": "Ver Demo"
+    }
+  }
+}

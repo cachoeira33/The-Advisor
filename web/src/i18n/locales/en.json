@@ -1,0 +1,135 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "filter": "Filter",
+    "export": "Export",
+    "import": "Import"
+  },
+  "auth": {
+    "login": "Sign In",
+    "logout": "Sign Out",
+    "signup": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "forgotPassword": "Forgot Password?",
+    "resetPassword": "Reset Password",
+    "fullName": "Full Name",
+    "welcomeBack": "Welcome back",
+    "createAccount": "Create your account",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "overview": "Overview",
+    "revenue": "Revenue",
+    "expenses": "Expenses",
+    "profit": "Profit",
+    "cashFlow": "Cash Flow",
+    "monthlyRevenue": "Monthly Revenue",
+    "monthlyExpenses": "Monthly Expenses",
+    "profitMargin": "Profit Margin",
+    "recentTransactions": "Recent Transactions"
+  },
+  "business": {
+    "title": "Businesses",
+    "create": "Create Business",
+    "name": "Business Name",
+    "industry": "Industry",
+    "currency": "Currency",
+    "selectBusiness": "Select Business",
+    "noBusiness": "No businesses found",
+    "createFirst": "Create your first business"
+  },
+  "transactions": {
+    "title": "Transactions",
+    "add": "Add Transaction",
+    "description": "Description",
+    "amount": "Amount",
+    "category": "Category",
+    "date": "Date",
+    "type": "Type",
+    "income": "Income",
+    "expense": "Expense",
+    "import": "Import Transactions",
+    "export": "Export Transactions"
+  },
+  "forecasting": {
+    "title": "Forecasting",
+    "create": "Create Forecast",
+    "scenario": "Scenario",
+    "model": "Model",
+    "timeframe": "Timeframe",
+    "confidence": "Confidence Level",
+    "viewResults": "View Results",
+    "exportForecast": "Export Forecast"
+  },
+  "marketing": {
+    "hero": {
+      "title": "Transform Your Financial Future",
+      "subtitle": "Professional financial dashboard and forecasting platform designed for growing businesses",
+      "cta": "Start Free Trial",
+      "watchDemo": "Watch Demo"
+    },
+    "features": {
+      "title": "Everything you need to manage finances",
+      "multiTenant": {
+        "title": "Multi-Business Management",
+        "description": "Manage multiple businesses from a single account with role-based access control"
+      },
+      "forecasting": {
+        "title": "Advanced Forecasting",
+        "description": "AI-powered financial forecasting with scenario planning and risk assessment"
+      },
+      "realTime": {
+        "title": "Real-time Analytics",
+        "description": "Live dashboard with automated insights and performance tracking"
+      }
+    },
+    "pricing": {
+      "title": "Simple, transparent pricing",
+      "free": {
+        "title": "Free",
+        "price": "$0",
+        "description": "Perfect for getting started",
+        "features": [
+          "1 Business",
+          "Basic transactions",
+          "Simple reports",
+          "Email support"
+        ]
+      },
+      "pro": {
+        "title": "Professional",
+        "price": "$29",
+        "description": "For growing businesses",
+        "features": [
+          "5 Businesses",
+          "Advanced forecasting",
+          "Custom categories",
+          "Priority support",
+          "Export capabilities"
+        ]
+      },
+      "enterprise": {
+        "title": "Enterprise",
+        "price": "$99",
+        "description": "For established companies",
+        "features": [
+          "Unlimited businesses",
+          "White-label options",
+          "API access",
+          "Dedicated support",
+          "Custom integrations"
+        ]
+      }
+    }
+  }
+}

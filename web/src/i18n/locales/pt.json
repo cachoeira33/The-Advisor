@@ -1,0 +1,135 @@
+{
+  "common": {
+    "loading": "Carregando...",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "create": "Criar",
+    "search": "Pesquisar",
+    "filter": "Filtrar",
+    "export": "Exportar",
+    "import": "Importar"
+  },
+  "auth": {
+    "login": "Entrar",
+    "logout": "Sair",
+    "signup": "Cadastrar",
+    "email": "E-mail",
+    "password": "Senha",
+    "confirmPassword": "Confirmar Senha",
+    "forgotPassword": "Esqueceu a senha?",
+    "resetPassword": "Redefinir Senha",
+    "fullName": "Nome Completo",
+    "welcomeBack": "Bem-vindo de volta",
+    "createAccount": "Criar sua conta",
+    "alreadyHaveAccount": "Já tem uma conta?",
+    "dontHaveAccount": "Não tem uma conta?"
+  },
+  "dashboard": {
+    "title": "Painel",
+    "overview": "Visão Geral",
+    "revenue": "Receita",
+    "expenses": "Despesas",
+    "profit": "Lucro",
+    "cashFlow": "Fluxo de Caixa",
+    "monthlyRevenue": "Receita Mensal",
+    "monthlyExpenses": "Despesas Mensais",
+    "profitMargin": "Margem de Lucro",
+    "recentTransactions": "Transações Recentes"
+  },
+  "business": {
+    "title": "Empresas",
+    "create": "Criar Empresa",
+    "name": "Nome da Empresa",
+    "industry": "Setor",
+    "currency": "Moeda",
+    "selectBusiness": "Selecionar Empresa",
+    "noBusiness": "Nenhuma empresa encontrada",
+    "createFirst": "Criar sua primeira empresa"
+  },
+  "transactions": {
+    "title": "Transações",
+    "add": "Adicionar Transação",
+    "description": "Descrição",
+    "amount": "Valor",
+    "category": "Categoria",
+    "date": "Data",
+    "type": "Tipo",
+    "income": "Receita",
+    "expense": "Despesa",
+    "import": "Importar Transações",
+    "export": "Exportar Transações"
+  },
+  "forecasting": {
+    "title": "Previsões",
+    "create": "Criar Previsão",
+    "scenario": "Cenário",
+    "model": "Modelo",
+    "timeframe": "Período",
+    "confidence": "Nível de Confiança",
+    "viewResults": "Ver Resultados",
+    "exportForecast": "Exportar Previsão"
+  },
+  "marketing": {
+    "hero": {
+      "title": "Transforme Seu Futuro Financeiro",
+      "subtitle": "Plataforma profissional de dashboard financeiro e previsões projetada para empresas em crescimento",
+      "cta": "Iniciar Teste Grátis",
+      "watchDemo": "Assistir Demo"
+    },
+    "features": {
+      "title": "Tudo que você precisa para gerenciar finanças",
+      "multiTenant": {
+        "title": "Gestão Multi-Empresa",
+        "description": "Gerencie múltiplas empresas de uma única conta com controle de acesso baseado em funções"
+      },
+      "forecasting": {
+        "title": "Previsões Avançadas",
+        "description": "Previsões financeiras com IA, planejamento de cenários e avaliação de riscos"
+      },
+      "realTime": {
+        "title": "Análises em Tempo Real",
+        "description": "Dashboard ao vivo com insights automatizados e acompanhamento de performance"
+      }
+    },
+    "pricing": {
+      "title": "Preços simples e transparentes",
+      "free": {
+        "title": "Grátis",
+        "price": "R$ 0",
+        "description": "Perfeito para começar",
+        "features": [
+          "1 Empresa",
+          "Transações básicas",
+          "Relatórios simples",
+          "Suporte por email"
+        ]
+      },
+      "pro": {
+        "title": "Profissional",
+        "price": "R$ 149",
+        "description": "Para empresas em crescimento",
+        "features": [
+          "5 Empresas",
+          "Previsões avançadas",
+          "Categorias personalizadas",
+          "Suporte prioritário",
+          "Capacidades de exportação"
+        ]
+      },
+      "enterprise": {
+        "title": "Enterprise",
+        "price": "R$ 499",
+        "description": "Para empresas estabelecidas",
+        "features": [
+          "Empresas ilimitadas",
+          "Opções white-label",
+          "Acesso à API",
+          "Suporte dedicado",
+          "Integrações personalizadas"
+        ]
+      }
+    }
+  }
+}

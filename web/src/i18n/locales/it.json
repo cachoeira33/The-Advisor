@@ -1,0 +1,49 @@
+{
+  "common": {
+    "loading": "Caricamento...",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "create": "Crea",
+    "search": "Cerca",
+    "filter": "Filtra",
+    "export": "Esporta",
+    "import": "Importa"
+  },
+  "auth": {
+    "login": "Accedi",
+    "logout": "Esci",
+    "signup": "Registrati",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Conferma Password",
+    "forgotPassword": "Password dimenticata?",
+    "resetPassword": "Reimposta Password",
+    "fullName": "Nome Completo",
+    "welcomeBack": "Bentornato",
+    "createAccount": "Crea il tuo account",
+    "alreadyHaveAccount": "Hai già un account?",
+    "dontHaveAccount": "Non hai un account?"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "overview": "Panoramica",
+    "revenue": "Ricavi",
+    "expenses": "Spese",
+    "profit": "Profitto",
+    "cashFlow": "Flusso di Cassa",
+    "monthlyRevenue": "Ricavi Mensili",
+    "monthlyExpenses": "Spese Mensili",
+    "profitMargin": "Margine di Profitto",
+    "recentTransactions": "Transazioni Recenti"
+  },
+  "marketing": {
+    "hero": {
+      "title": "Trasforma il Tuo Futuro Finanziario",
+      "subtitle": "Dashboard finanziario professionale e piattaforma di previsione progettata per aziende in crescita",
+      "cta": "Inizia Prova Gratuita",
+      "watchDemo": "Guarda Demo"
+    }
+  }
+}
