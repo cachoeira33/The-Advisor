@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { DivideIcon as LucideIcon } from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 import { Card } from '../ui/Card';
 
 interface MetricCardProps {
@@ -12,6 +12,7 @@ interface MetricCardProps {
   };
   icon: LucideIcon;
   iconColor?: string;
+  loading?: boolean;
 }
 
 export function MetricCard({ 
@@ -19,7 +20,8 @@ export function MetricCard({
   value, 
   change, 
   icon: Icon, 
-  iconColor = 'text-primary-600' 
+  iconColor = 'text-primary-600',
+  loading = false
 }: MetricCardProps) {
   const getTrendColor = (trend: string) => {
     switch (trend) {
@@ -29,6 +31,27 @@ export function MetricCard({
     }
   };
 
+  if (loading) {
+    return (
+      <Card hover className="p-6">
+        <div className="flex items-center">
+          <div className="flex-shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center animate-pulse">
+              <div className="w-5 h-5 bg-gray-300 rounded" />
+            </div>
+          </div>
+          <div className="ml-5 w-0 flex-1">
+            <dl>
+              <dt className="h-4 bg-gray-200 rounded animate-pulse mb-2" />
+              <dd className="flex items-baseline">
+                <div className="h-8 w-24 bg-gray-200 rounded animate-pulse" />
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </Card>
+    );
+  }
   return (
     <Card hover className="p-6">
       <div className="flex items-center">

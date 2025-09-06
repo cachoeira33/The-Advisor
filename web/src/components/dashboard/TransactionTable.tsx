@@ -11,12 +11,14 @@ interface TransactionTableProps {
   transactions: Transaction[];
   onEdit?: (transaction: Transaction) => void;
   onDelete?: (id: string) => void;
+  loading?: boolean;
 }
 
 export function TransactionTable({ 
   transactions, 
   onEdit, 
-  onDelete 
+  onDelete,
+  loading = false
 }: TransactionTableProps) {
   const { t } = useTranslation();
 
@@ -27,6 +29,31 @@ export function TransactionTable({
     }).format(amount);
   };
 
+  if (loading) {
+    return (
+      <Card className="overflow-hidden">
+        <div className="px-6 py-4 border-b border-gray-200">
+          <h3 className="text-lg font-medium text-gray-900">
+            {t('dashboard.recentTransactions')}
+          </h3>
+        </div>
+        <div className="p-6">
+          <div className="space-y-4">
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="flex items-center space-x-4 animate-pulse">
+                <div className="w-8 h-8 bg-gray-200 rounded-full" />
+                <div className="flex-1 space-y-2">
+                  <div className="h-4 bg-gray-200 rounded w-3/4" />
+                  <div className="h-3 bg-gray-200 rounded w-1/2" />
+                </div>
+                <div className="h-4 bg-gray-200 rounded w-20" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </Card>
+    );
+  }
   if (transactions.length === 0) {
     return (
       <Card className="p-12 text-center">
@@ -95,7 +122,7 @@ export function TransactionTable({
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                    {transaction.category?.name || 'Uncategorized'}
+                    {(transaction as any).category?.name || 'Uncategorized'}
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
@@ -112,7 +139,7 @@ export function TransactionTable({
                     variant="ghost"
                     size="sm"
                     onClick={() => {
-                      // Handle action menu
+                      if (onEdit) onEdit(transaction);
                     }}
                   >
                     <MoreHorizontal className="w-4 h-4" />
