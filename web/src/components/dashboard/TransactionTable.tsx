@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { CreditCard } from 'lucide-react';
 import { format } from 'date-fns';
-import { MoreHorizontal, ArrowUpRight, ArrowDownRight } from 'lucide-react';
+import { MoreHorizontal, ArrowUpRight, ArrowDownRight, Edit, Trash2 } from 'lucide-react';
 import { Transaction } from '../../types';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
@@ -135,15 +135,29 @@ export function TransactionTable({
                   {format(new Date(transaction.date), 'MMM dd, yyyy')}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => {
-                      if (onEdit) onEdit(transaction);
-                    }}
-                  >
-                    <MoreHorizontal className="w-4 h-4" />
-                  </Button>
+                  <div className="flex items-center justify-end space-x-2">
+                    {onEdit && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => onEdit(transaction)}
+                        title="Edit transaction"
+                      >
+                        <Edit className="w-4 h-4" />
+                      </Button>
+                    )}
+                    {onDelete && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => onDelete(transaction.id)}
+                        title="Delete transaction"
+                        className="text-red-600 hover:text-red-700"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    )}
+                  </div>
                 </td>
               </tr>
             ))}

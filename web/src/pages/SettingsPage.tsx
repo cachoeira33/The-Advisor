@@ -1,35 +1,37 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { User, Building2, CreditCard, Bell, Shield } from 'lucide-react';
+import { User, Building2, CreditCard, Bell, Shield, Palette, Globe } from 'lucide-react';
 import { BillingSettings } from '../components/billing/BillingSettings';
+import { ProfileSettings } from '../components/settings/ProfileSettings';
+import { BusinessSettings } from '../components/settings/BusinessSettings';
+import { CategorySettings } from '../components/settings/CategorySettings';
+import { PreferencesSettings } from '../components/settings/PreferencesSettings';
 
 export function SettingsPage() {
-  const [activeTab, setActiveTab] = useState('billing');
+  const [activeTab, setActiveTab] = useState('profile');
 
   const tabs = [
     { id: 'profile', name: 'Profile', icon: User },
     { id: 'business', name: 'Business', icon: Building2 },
+    { id: 'categories', name: 'Categories', icon: Palette },
     { id: 'billing', name: 'Billing', icon: CreditCard },
+    { id: 'preferences', name: 'Preferences', icon: Globe },
     { id: 'notifications', name: 'Notifications', icon: Bell },
     { id: 'security', name: 'Security', icon: Shield },
   ];
 
   const renderTabContent = () => {
     switch (activeTab) {
+      case 'profile':
+        return <ProfileSettings />;
+      case 'business':
+        return <BusinessSettings />;
+      case 'categories':
+        return <CategorySettings />;
       case 'billing':
         return <BillingSettings />;
-      case 'profile':
-        return (
-          <div className="text-center py-12">
-            <p className="text-gray-600">Profile settings coming soon</p>
-          </div>
-        );
-      case 'business':
-        return (
-          <div className="text-center py-12">
-            <p className="text-gray-600">Business settings coming soon</p>
-          </div>
-        );
+      case 'preferences':
+        return <PreferencesSettings />;
       case 'notifications':
         return (
           <div className="text-center py-12">

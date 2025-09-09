@@ -1,20 +1,132 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Plus, Upload, Filter, Download } from 'lucide-react';
+import { Plus, Upload, Filter, Download, Edit, Trash2 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { TransactionTable } from '../components/dashboard/TransactionTable';
 import { Modal } from '../components/ui/Modal';
-import { useTransactions } from '../hooks/useTransactions';
+import { TransactionModal } from '../components/transactions/TransactionModal';
+import { TransactionFiltersComponent, TransactionFilters } from '../components/transactions/TransactionFilters';
+import { useTransactions, TransactionFilters as TFilters } from '../hooks/useTransactions';
 import { useBusiness } from '../hooks/useBusiness';
+import { Transaction } from '../types';
+import toast from 'react-hot-toast';
 
 export function TransactionsPage() {
   const { t } = useTranslation();
   const { selectedBusiness } = useBusiness();
-  const { transactions, isLoading } = useTransactions(selectedBusiness?.id);
+  const [filters, setFilters] = useState<TransactionFilters>({
+    search: '',
+    type: 'ALL',
+    category_id: '',
+    date_from: '',
+    date_to: '',
+    amount_min: '',
+    amount_max: '',
+  });
+  
+  const { 
+    transactions, 
+    isLoading, 
+    createTransaction, 
+    updateTransaction, 
+    deleteTransaction,
+    importTransactions,
+    isCreating,
+    isUpdating,
+    isDeleting,
+    isImporting
+  } = useTransactions(selectedBusiness?.id, filters);
+  
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isImportModalOpen, setIsImportModalOpen] = useState(false);
+  const [editingTransaction, setEditingTransaction] = useState<Transaction | null>(null);
 
+  const handleCreateTransaction = async (data: any) => {
+    try {
+      await createTransaction(data);
+      toast.success('Transaction created successfully');
+      setIsAddModalOpen(false);
+    } catch (error) {
+      toast.error('Failed to create transaction');
+    }
+  };
+
+  const handleUpdateTransaction = async (data: any) => {
+    if (!editingTransaction) return;
+    
+    try {
+      await updateTransaction({ id: editingTransaction.id, ...data });
+      toast.success('Transaction updated successfully');
+      setEditingTransaction(null);
+    } catch (error) {
+      toast.error('Failed to update transaction');
+    }
+  };
+
+  const handleDeleteTransaction = async (id: string) => {
+    if (!window.confirm('Are you sure you want to delete this transaction?')) {
+      return;
+    }
+    
+    try {
+      await deleteTransaction(id);
+      toast.success('Transaction deleted successfully');
+    } catch (error) {
+      toast.error('Failed to delete transaction');
+    }
+  };
+
+  const handleImport = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    
+    try {
+      await importTransactions(file);
+      toast.success('Transactions imported successfully');
+      setIsImportModalOpen(false);
+    } catch (error) {
+      toast.error('Failed to import transactions');
+    }
+  };
+
+  const handleExport = () => {
+    if (transactions.length === 0) {
+      toast.error('No transactions to export');
+      return;
+    }
+
+    const csvContent = [
+      ['Date', 'Description', 'Amount', 'Type', 'Category'].join(','),
+      ...transactions.map(t => [
+        new Date(t.date).toLocaleDateString(),
+        `"${t.description}"`,
+        t.amount,
+        t.type,
+        (t as any).category?.name || 'Uncategorized'
+      ].join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `transactions-${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
+  const clearFilters = () => {
+    setFilters({
+      search: '',
+      type: 'ALL',
+      category_id: '',
+      date_from: '',
+      date_to: '',
+      amount_min: '',
+      amount_max: '',
+    });
+  };
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-96">
@@ -42,6 +154,7 @@ export function TransactionsPage() {
           <Button
             variant="outline"
             onClick={() => setIsImportModalOpen(true)}
+            loading={isImporting}
           >
             <Upload className="w-4 h-4 mr-2" />
             {t('transactions.import')}
@@ -49,6 +162,7 @@ export function TransactionsPage() {
           
           <Button
             variant="outline"
+            onClick={handleExport}
           >
             <Download className="w-4 h-4 mr-2" />
             {t('transactions.export')}
@@ -63,45 +177,52 @@ export function TransactionsPage() {
         </div>
       </div>
 
-      <div className="flex items-center space-x-4">
-        <Button variant="outline" size="sm">
-          <Filter className="w-4 h-4 mr-2" />
-          {t('common.filter')}
-        </Button>
-        
-        <select className="text-sm border-gray-300 rounded-md focus:border-primary-500 focus:ring-primary-500">
-          <option value="">All Categories</option>
-          <option value="income">Income</option>
-          <option value="expense">Expenses</option>
-        </select>
-        
-        <select className="text-sm border-gray-300 rounded-md focus:border-primary-500 focus:ring-primary-500">
-          <option value="">All Time</option>
-          <option value="month">This Month</option>
-          <option value="quarter">This Quarter</option>
-          <option value="year">This Year</option>
-        </select>
-      </div>
+      <TransactionFiltersComponent
+        filters={filters}
+        onFiltersChange={setFilters}
+        businessId={selectedBusiness?.id || ''}
+        onClearFilters={clearFilters}
+      />
 
-      <TransactionTable transactions={transactions} />
+      <TransactionTable 
+        transactions={transactions} 
+        onEdit={setEditingTransaction}
+        onDelete={handleDeleteTransaction}
+        loading={isLoading}
+      />
 
-      <Modal
+      <TransactionModal
         isOpen={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}
-        title={t('transactions.add')}
-      >
-        <div className="text-center py-8">
-          <p className="text-gray-600">Transaction form would go here</p>
-        </div>
-      </Modal>
+        onSubmit={handleCreateTransaction}
+        businessId={selectedBusiness?.id || ''}
+        loading={isCreating}
+      />
+
+      <TransactionModal
+        isOpen={!!editingTransaction}
+        onClose={() => setEditingTransaction(null)}
+        onSubmit={handleUpdateTransaction}
+        transaction={editingTransaction || undefined}
+        businessId={selectedBusiness?.id || ''}
+        loading={isUpdating}
+      />
 
       <Modal
         isOpen={isImportModalOpen}
         onClose={() => setIsImportModalOpen(false)}
         title={t('transactions.import')}
       >
-        <div className="text-center py-8">
-          <p className="text-gray-600">Import functionality would go here</p>
+        <div className="space-y-4">
+          <p className="text-gray-600">
+            Upload a CSV file with columns: Description, Amount, Date
+          </p>
+          <input
+            type="file"
+            accept=".csv"
+            onChange={handleImport}
+            className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100"
+          />
         </div>
       </Modal>
     </motion.div>
