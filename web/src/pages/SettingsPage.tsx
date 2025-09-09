@@ -6,6 +6,10 @@ import { ProfileSettings } from '../components/settings/ProfileSettings';
 import { BusinessSettings } from '../components/settings/BusinessSettings';
 import { CategorySettings } from '../components/settings/CategorySettings';
 import { PreferencesSettings } from '../components/settings/PreferencesSettings';
+import { ProfileSettings } from '../components/settings/ProfileSettings';
+import { BusinessSettings } from '../components/settings/BusinessSettings';
+import { CategorySettings } from '../components/settings/CategorySettings';
+import { PreferencesSettings } from '../components/settings/PreferencesSettings';
 
 export function SettingsPage() {
   const [activeTab, setActiveTab] = useState('profile');
@@ -14,7 +18,9 @@ export function SettingsPage() {
     { id: 'profile', name: 'Profile', icon: User },
     { id: 'business', name: 'Business', icon: Building2 },
     { id: 'categories', name: 'Categories', icon: Palette },
+    { id: 'categories', name: 'Categories', icon: Palette },
     { id: 'billing', name: 'Billing', icon: CreditCard },
+    { id: 'preferences', name: 'Preferences', icon: Globe },
     { id: 'preferences', name: 'Preferences', icon: Globe },
     { id: 'notifications', name: 'Notifications', icon: Bell },
     { id: 'security', name: 'Security', icon: Shield },
@@ -28,20 +34,16 @@ export function SettingsPage() {
         return <BusinessSettings />;
       case 'categories':
         return <CategorySettings />;
+      case 'profile':
+        return <ProfileSettings />;
+      case 'business':
+        return <BusinessSettings />;
+      case 'categories':
+        return <CategorySettings />;
       case 'billing':
         return <BillingSettings />;
       case 'preferences':
         return <PreferencesSettings />;
-      case 'notifications':
-        return (
-          <div className="text-center py-12">
-            <p className="text-gray-600">Notification settings coming soon</p>
-          </div>
-        );
-      case 'security':
-        return (
-          <div className="text-center py-12">
-            <p className="text-gray-600">Security settings coming soon</p>
           </div>
         );
       default:

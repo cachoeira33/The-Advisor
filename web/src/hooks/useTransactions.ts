@@ -13,6 +13,16 @@ export interface TransactionFilters {
 }
 
 export function useTransactions(businessId?: string, filters?: TransactionFilters) {
+  search?: string;
+  type?: 'ALL' | 'INCOME' | 'EXPENSE';
+  category_id?: string;
+  date_from?: string;
+  date_to?: string;
+  amount_min?: string;
+  amount_max?: string;
+}
+
+export function useTransactions(businessId?: string, filters?: TransactionFilters) {
   const queryClient = useQueryClient();
 
   // CORRIGIDO PARA A SINTAXE DE OBJETO
@@ -29,6 +39,40 @@ export function useTransactions(businessId?: string, filters?: TransactionFilter
         `)
         .eq('business_id', businessId);
 
+      // Apply filters
+      if (filters?.search) {
+        query = query.ilike('description', `%${filters.search}%`);
+      }
+      
+      if (filters?.type && filters.type !== 'ALL') {
+        query = query.eq('type', filters.type);
+      }
+      
+      if (filters?.category_id) {
+        query = query.eq('category_id', filters.category_id);
+      }
+      
+      if (filters?.date_from) {
+        query = query.gte('date', filters.date_from);
+      }
+      
+      if (filters?.date_to) {
+        query = query.lte('date', filters.date_to);
+      }
+      
+      if (filters?.amount_min) {
+        const minAmount = parseFloat(filters.amount_min);
+        query = query.gte('amount', minAmount);
+      }
+      
+      if (filters?.amount_max) {
+        const maxAmount = parseFloat(filters.amount_max);
+        query = query.lte('amount', maxAmount);
+      }
+
+      query = query.order('date', { ascending: false });
+
+      const { data, error } = await query;
       // Apply filters
       if (filters?.search) {
         query = query.ilike('description', `%${filters.search}%`);
@@ -146,9 +190,26 @@ export function useTransactions(businessId?: string, filters?: TransactionFilter
           };
           transactions.push(transaction);
         }
+        if (values.length >= 3) {
+          const transaction = {
+            business_id: businessId,
+            description: values[headers.indexOf('description')] || values[0],
+            amount: parseFloat(values[headers.indexOf('amount')] || values[1]),
+            date: new Date(values[headers.indexOf('date')] || values[2]).toISOString(),
+            type: parseFloat(values[headers.indexOf('amount')] || values[1]) > 0 ? 'INCOME' : 'EXPENSE',
+            currency: 'USD',
+          };
+          transactions.push(transaction);
+        }
       }
 
       // Insert transactions
+      const { data, error } = await supabase
+        .from('transactions')
+        .insert(transactions);
+
+      if (error) throw error;
+      return { count: transactions.length };
       const { data, error } = await supabase
         .from('transactions')
         .insert(transactions);

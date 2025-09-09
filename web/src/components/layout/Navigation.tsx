@@ -47,7 +47,7 @@ export function Navigation({ isMobileMenuOpen, setIsMobileMenuOpen }: Navigation
     {
       href: '/dashboard/forecasts',
       icon: TrendingUp,
-      label: t('forecasting.title'),
+      label: 'Forecasting',
     },
     {
       href: '/dashboard/reports',

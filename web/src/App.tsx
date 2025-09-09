@@ -13,6 +13,9 @@ import { SignupPage } from './pages/SignupPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { TransactionsPage } from './pages/TransactionsPage';
 import { OnboardingPage } from './pages/OnboardingPage';
+import { ForecastingPage } from './pages/ForecastingPage';
+import { ReportsPage } from './pages/ReportsPage';
+import { SettingsPage } from './pages/SettingsPage';
 
 // Protected Route component
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -55,9 +58,9 @@ function App() {
         >
           <Route index element={<DashboardPage />} />
           <Route path="transactions" element={<TransactionsPage />} />
-          <Route path="forecasts" element={<div className="p-8 text-center text-gray-600">Forecasting page coming soon</div>} />
-          <Route path="reports" element={<div className="p-8 text-center text-gray-600">Reports page coming soon</div>} />
-          <Route path="settings" element={<div className="p-8 text-center text-gray-600">Settings page coming soon</div>} />
+          <Route path="forecasts" element={<ForecastingPage />} />
+          <Route path="reports" element={<ReportsPage />} />
+          <Route path="settings" element={<SettingsPage />} />
         </Route>
         
         {/* Catch all route */}
