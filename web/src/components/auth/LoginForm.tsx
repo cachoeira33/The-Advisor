@@ -124,6 +124,11 @@ export function LoginForm() {
             {t('auth.signup')}
           </a>
         </p>
+        <p className="mt-2 text-sm text-gray-600">
+          <a href="/forgot-password" className="font-medium text-primary-600 hover:text-primary-500">
+            {t('auth.forgotPassword')}
+          </a>
+        </p>
       </div>
     </motion.div>
   );

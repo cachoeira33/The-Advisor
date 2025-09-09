@@ -24,7 +24,8 @@
     "welcomeBack": "Bienvenido de nuevo",
     "createAccount": "Crear tu cuenta",
     "alreadyHaveAccount": "¿Ya tienes una cuenta?",
-    "dontHaveAccount": "¿No tienes una cuenta?"
+    "dontHaveAccount": "¿No tienes una cuenta?",
+    "forgotPasswordLink": "¿Olvidaste tu contraseña?"
   },
   "dashboard": {
     "title": "Panel",
@@ -37,6 +38,40 @@
     "monthlyExpenses": "Gastos Mensuales",
     "profitMargin": "Margen de Beneficio",
     "recentTransactions": "Transacciones Recientes"
+  },
+  "forecasting": {
+    "title": "Pronósticos",
+    "budgeting": "Presupuesto y Planificación",
+    "recurringItems": "Elementos Recurrentes",
+    "addRecurringItem": "Agregar Elemento Recurrente",
+    "purchaseSimulator": "Simulador de Compras",
+    "simulatePurchase": "Simular Compra"
+  },
+  "reports": {
+    "title": "Informes Financieros",
+    "profitLoss": "Estado de Resultados",
+    "cashFlow": "Flujo de Efectivo",
+    "expensesByCategory": "Gastos por Categoría",
+    "incomeBySource": "Ingresos por Fuente",
+    "exportPDF": "Exportar PDF",
+    "exportCSV": "Exportar CSV"
+  },
+  "settings": {
+    "title": "Configuración",
+    "profile": "Perfil",
+    "business": "Negocio",
+    "categories": "Categorías",
+    "billing": "Facturación",
+    "preferences": "Preferencias",
+    "notifications": "Notificaciones",
+    "security": "Seguridad"
+  },
+  "onboarding": {
+    "welcome": "Bienvenido a FinancePro",
+    "personalUse": "Uso Personal",
+    "businessUse": "Uso Empresarial",
+    "personalDetails": "Detalles Personales",
+    "businessDetails": "Detalles del Negocio"
   },
   "marketing": {
     "hero": {

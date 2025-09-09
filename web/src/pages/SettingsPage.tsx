@@ -44,6 +44,9 @@ export function SettingsPage() {
         return <BillingSettings />;
       case 'preferences':
         return <PreferencesSettings />;
+      case 'notifications':
+        return (
+          <div>
           </div>
         );
       default:

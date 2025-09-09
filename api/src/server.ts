@@ -11,6 +11,7 @@ import { businessRoutes } from './routes/business.js';
 import { transactionRoutes } from './routes/transactions.js';
 import { forecastRoutes } from './routes/forecasts.js';
 import { billingRoutes } from './routes/billing.js';
+import { contactRoutes } from './routes/contact.js';
 
 dotenv.config();
 
@@ -44,6 +45,7 @@ app.use('/api/businesses', businessRoutes);
 app.use('/api/transactions', transactionRoutes);
 app.use('/api/forecasts', forecastRoutes);
 app.use('/api/billing', billingRoutes);
+app.use('/api/contact', contactRoutes);
 
 // Error handling
 app.use(errorHandler);

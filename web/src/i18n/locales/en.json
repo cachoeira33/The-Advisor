@@ -24,7 +24,8 @@
     "welcomeBack": "Welcome back",
     "createAccount": "Create your account",
     "alreadyHaveAccount": "Already have an account?",
-    "dontHaveAccount": "Don't have an account?"
+    "dontHaveAccount": "Don't have an account?",
+    "forgotPasswordLink": "Forgot your password?"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -63,6 +64,11 @@
   },
   "forecasting": {
     "title": "Forecasting",
+    "budgeting": "Budgeting & Planning",
+    "recurringItems": "Recurring Items",
+    "addRecurringItem": "Add Recurring Item",
+    "purchaseSimulator": "Purchase Simulator",
+    "simulatePurchase": "Simulate Purchase",
     "create": "Create Forecast",
     "scenario": "Scenario",
     "model": "Model",
@@ -70,6 +76,32 @@
     "confidence": "Confidence Level",
     "viewResults": "View Results",
     "exportForecast": "Export Forecast"
+  },
+  "reports": {
+    "title": "Financial Reports",
+    "profitLoss": "Profit & Loss Statement",
+    "cashFlow": "Cash Flow Statement",
+    "expensesByCategory": "Expenses by Category",
+    "incomeBySource": "Income by Source",
+    "exportPDF": "Export PDF",
+    "exportCSV": "Export CSV"
+  },
+  "settings": {
+    "title": "Settings",
+    "profile": "Profile",
+    "business": "Business",
+    "categories": "Categories",
+    "billing": "Billing",
+    "preferences": "Preferences",
+    "notifications": "Notifications",
+    "security": "Security"
+  },
+  "onboarding": {
+    "welcome": "Welcome to FinancePro",
+    "personalUse": "Personal Use",
+    "businessUse": "Business Use",
+    "personalDetails": "Personal Details",
+    "businessDetails": "Business Details"
   },
   "marketing": {
     "hero": {
