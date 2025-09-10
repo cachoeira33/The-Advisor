@@ -117,6 +117,15 @@ export function DashboardPage() {
       defaultW: 12,
       defaultH: 6,
     },
+    {
+    type: 'actions',
+    title: 'Quick Actions',
+    component: () => null,
+    defaultW: 6,
+    defaultH: 3,
+    minW: 4,
+    minH: 2,
+    },
   ];
 
   const saveDashboardLayout = async () => {
@@ -195,7 +204,7 @@ export function DashboardPage() {
     switch (widget.id) {
       case 'revenue-card':
         return (
-          <MetricCard
+          <StatsCard
             title={t('dashboard.revenue')}
             value={formatCurrency(totalRevenue)}
             change={{ value: '+12.5%', trend: 'up' as const }}
@@ -206,7 +215,7 @@ export function DashboardPage() {
         );
       case 'expenses-card':
         return (
-          <MetricCard
+          <StatsCard
             title={t('dashboard.expenses')}
             value={formatCurrency(totalExpenses)}
             change={{ value: '+5.2%', trend: 'up' as const }}
@@ -217,7 +226,7 @@ export function DashboardPage() {
         );
       case 'profit-card':
         return (
-          <MetricCard
+          <StatsCard
             title={t('dashboard.profit')}
             value={formatCurrency(profit)}
             change={{ value: '+18.3%', trend: 'up' as const }}
@@ -228,7 +237,7 @@ export function DashboardPage() {
         );
       case 'profit-margin-card':
         return (
-          <MetricCard
+          <StatsCard
             title={t('dashboard.profitMargin')}
             value={`${profitMargin.toFixed(1)}%`}
             change={{ value: '+2.1%', trend: 'up' as const }}
@@ -237,6 +246,14 @@ export function DashboardPage() {
             loading={isTransactionsLoading}
           />
         );
+      case 'quick-actions':
+        return (
+          <QuickActions
+            actions={quickActions}
+            title="Quick Actions"
+        />
+        );
+        
       case 'recent-transactions':
         return (
           <TransactionTable 
