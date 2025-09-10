@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-+import { Search, Globe } from 'lucide-react';
+import { Search, Globe } from 'lucide-react';
 import { Button } from '../ui/Button';
-+import { NotificationBell } from '../common/NotificationBell';
-+import { useNotifications } from '../../hooks/useNotifications';
+import { NotificationBell } from '../common/NotificationBell';
+import { useNotifications } from '../../hooks/useNotifications';
 
 export function Header() {
   const { i18n } = useTranslation();
