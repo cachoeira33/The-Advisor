@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Responsive, WidthProvider, Layout } from 'react-grid-layout';
-import { Edit3, Plus, Save } from 'lucide-react';
+import { Edit3, Plus, Save, TrendingUp, DollarSign, CreditCard } from 'lucide-react';
 import {
   DollarSign,
   TrendingUp,
