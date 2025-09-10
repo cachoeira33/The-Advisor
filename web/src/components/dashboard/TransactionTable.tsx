@@ -159,7 +159,6 @@ export function TransactionTable({
                     )}
                   </div>
                       </Button>
-                    )}
                     {onDelete && (
                       <Button
                         variant="ghost"
