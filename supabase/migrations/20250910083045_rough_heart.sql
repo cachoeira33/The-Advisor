@@ -24,11 +24,6 @@ CREATE TABLE IF NOT EXISTS dashboard_layouts (
 
 ALTER TABLE dashboard_layouts ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Users can manage own dashboard layouts"
-  ON dashboard_layouts
-  FOR ALL
-  TO public
-  USING (auth.uid() = user_id);
 
 -- Add trigger for updated_at
 CREATE TRIGGER update_dashboard_layouts_updated_at
