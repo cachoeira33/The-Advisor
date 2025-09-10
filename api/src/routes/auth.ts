@@ -129,4 +129,18 @@ router.post('/logout', asyncHandler(async (_req: express.Request, res: express.R
   res.json({ message: 'Logout successful' });
 }));
 
+router.post('/forgot-password', asyncHandler(async (req: express.Request, res: express.Response) => {
+  const { email } = z.object({ email: z.string().email() }).parse(req.body);
+
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/reset-password`,
+  });
+
+  if (error) {
+    throw createError('Failed to send reset email', 400);
+  }
+
+  res.json({ message: 'Password reset email sent' });
+}));
+
 export { router as authRoutes };

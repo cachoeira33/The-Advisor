@@ -100,7 +100,7 @@ export function LoginForm() {
 
           <div className="text-sm">
             <a
-              href="#"
+              href="/forgot-password"
               className="font-medium text-primary-600 hover:text-primary-500"
             >
               {t('auth.forgotPassword')}

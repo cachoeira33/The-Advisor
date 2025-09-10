@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useAuth } from './hooks/useAuth';
+import { useOnboarding } from './hooks/useOnboarding';
 
 // Layout components
 import { DashboardLayout } from './components/layout/DashboardLayout';
@@ -20,8 +21,9 @@ import { SettingsPage } from './pages/SettingsPage';
 // Protected Route component
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
+  const { isOnboardingComplete, loading: onboardingLoading } = useOnboarding();
 
-  if (loading) {
+  if (loading || onboardingLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600" />
@@ -31,6 +33,11 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
   if (!user) {
     return <Navigate to="/login" replace />;
+  }
+
+  // Redirect to onboarding if not completed
+  if (isOnboardingComplete === false) {
+    return <Navigate to="/onboarding" replace />;
   }
 
   return <>{children}</>;

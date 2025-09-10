@@ -52,8 +52,6 @@ export function SignupForm() {
         }
       } else if (userData?.user) {
         toast.success('Account created successfully! Please check your email to verify your account.');
-        // --- ALTERADO ---
-        // Redireciona para a nova página de onboarding, não para o dashboard
         navigate('/onboarding');
       }
     } catch (error) {
