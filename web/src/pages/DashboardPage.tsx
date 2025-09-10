@@ -10,8 +10,9 @@ import {
   Activity,
   CreditCard
 } from 'lucide-react';
-import { MetricCard } from '../components/dashboard/MetricCard';
+import { QuickActions, commonQuickActions } from '../components/common/QuickActions';
 import { TransactionTable } from '../components/dashboard/TransactionTable';
+import { StatsCard } from '../components/common/StatsCard';
 import { DashboardWidget, WidgetConfig } from '../components/dashboard/DashboardWidget';
 import { WidgetSelector } from '../components/dashboard/WidgetSelector';
 import { BalanceChart } from '../components/dashboard/charts/BalanceChart';
