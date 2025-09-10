@@ -1,43 +1,56 @@
-import React from 'react';
-import { clsx } from 'clsx';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-interface BadgeProps {
+interface TooltipProps {
   children: React.ReactNode;
-  variant?: 'default' | 'success' | 'warning' | 'error' | 'info';
-  size?: 'sm' | 'md' | 'lg';
-  className?: string;
+  content: string;
+  position?: 'top' | 'bottom' | 'left' | 'right';
+  delay?: number;
 }
 
-export function Badge({
+export function Tooltip({
   children,
-  variant = 'default',
-  size = 'md',
-  className
-}: BadgeProps) {
-  const baseClasses = 'inline-flex items-center font-medium rounded-full';
-  const variantClasses = {
-    default: 'bg-gray-100 text-gray-800',
-    success: 'bg-green-100 text-green-800',
-    warning: 'bg-yellow-100 text-yellow-800',
-    error: 'bg-red-100 text-red-800',
-    info: 'bg-blue-100 text-blue-800',
+  content,
+  position = 'top',
+  delay = 300
+}: TooltipProps) {
+  const [isVisible, setIsVisible] = useState(false);
+  let timeoutId: NodeJS.Timeout;
+
+  const showTooltip = () => {
+    timeoutId = setTimeout(() => {
+      setIsVisible(true);
+    }, delay);
   };
-  const sizeClasses = {
-    sm: 'px-2 py-0.5 text-xs',
-    md: 'px-2.5 py-0.5 text-sm',
-    lg: 'px-3 py-1 text-base',
+
+  const hideTooltip = () => {
+    clearTimeout(timeoutId);
+    setIsVisible(false);
+  };
+
+  const positionClasses = {
+    top: 'bottom-full left-1/2 -translate-x-1/2 mb-2',
+    bottom: 'top-full left-1/2 -translate-x-1/2 mt-2',
+    left: 'right-full top-1/2 -translate-y-1/2 mr-2',
+    right: 'left-full top-1/2 -translate-y-1/2 ml-2',
   };
 
   return (
-    <span
-      className={clsx(
-        baseClasses,
-        variantClasses[variant],
-        sizeClasses[size],
-        className
-      )}
-    >
+    <div className="relative inline-block" onMouseEnter={showTooltip} onMouseLeave={hideTooltip}>
       {children}
-    </span>
+      <AnimatePresence>
+        {isVisible && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.15 }}
+            className={`absolute z-50 px-2 py-1 text-sm text-white bg-gray-900 rounded-md whitespace-nowrap ${positionClasses[position]}`}
+          >
+            {content}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
