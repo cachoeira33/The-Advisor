@@ -1,34 +1,30 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useRef, RefObject } from 'react';
 
-export function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState(() => {
-    // Garante que o código só rode no navegador
-    if (typeof window === 'undefined') {
-      return false;
-    }
-    return window.matchMedia(query).matches;
-  });
+type Event = MouseEvent | TouchEvent;
+
+export function useClickOutside<T extends HTMLElement = HTMLElement>(
+  handler: (event: Event) => void
+): RefObject<T> {
+  const ref = useRef<T>(null);
 
   useEffect(() => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-    
-    const media = window.matchMedia(query);
-    if (media.matches !== matches) {
-      setMatches(media.matches);
-    }
-    
-    const listener = () => setMatches(media.matches);
-    media.addEventListener('change', listener);
-    
-    return () => media.removeEventListener('change', listener);
-  }, [matches, query]);
+    const listener = (event: Event) => {
+      const el = ref.current;
+      // Não faz nada se o clique for dentro do elemento referenciado
+      if (!el || el.contains((event?.target as Node) || null)) {
+        return;
+      }
+      handler(event);
+    };
 
-  return matches;
+    document.addEventListener('mousedown', listener);
+    document.addEventListener('touchstart', listener);
+
+    return () => {
+      document.removeEventListener('mousedown', listener);
+      document.removeEventListener('touchstart', listener);
+    };
+  }, [ref, handler]);
+
+  return ref;
 }
-
-// Exemplos de uso comum
-export const useIsMobile = () => useMediaQuery('(max-width: 768px)');
-export const useIsTablet = () => useMediaQuery('(min-width: 769px) and (max-width: 1024px)');
-export const useIsDesktop = () => useMediaQuery('(min-width: 1025px)');
