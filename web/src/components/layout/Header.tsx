@@ -7,6 +7,7 @@ import { Button } from '../ui/Button';
 
 export function Header() {
   const { i18n } = useTranslation();
+  const { notifications, markAsRead, markAllAsRead, clearNotification } = useNotifications();
 
   const languages = [
     { code: 'en', name: 'English' },
