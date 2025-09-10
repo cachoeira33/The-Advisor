@@ -42,9 +42,12 @@ export function Header() {
             ))}
           </select>
           
-          <Button variant="ghost" size="sm">
-            <Bell className="h-5 w-5" />
-          </Button>
+          <NotificationBell
+            notifications={notifications}
+            onMarkAsRead={markAsRead}
+            onMarkAllAsRead={markAllAsRead}
+            onClear={clearNotification}
+          />
           
           <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
             <span className="text-sm font-medium text-primary-600">JD</span>
