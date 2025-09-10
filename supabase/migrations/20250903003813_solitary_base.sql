@@ -203,6 +203,9 @@ ALTER TABLE forecast_scenarios ENABLE ROW LEVEL SECURITY;
 -- RLS Policies
 
 -- Users can read and update their own profile
+-- Adicione esta linha para evitar o erro
+DROP POLICY IF EXISTS "Users can manage own dashboard layouts" ON public.dashboard_layouts;
+
 CREATE POLICY "Users can manage own profile" ON users
   FOR ALL USING (auth.uid() = id);
 
