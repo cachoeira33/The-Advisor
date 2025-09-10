@@ -25,8 +25,12 @@ CREATE TABLE IF NOT EXISTS recurring_items (
 
 ALTER TABLE recurring_items ENABLE ROW LEVEL SECURITY;
 
+-- Garante que não haverá erro se a política já existir
+DROP POLICY IF EXISTS "Recurring items access via business" ON public.recurring_items;
+
+-- Cria a política (agora de forma segura)
 CREATE POLICY "Recurring items access via business"
-  ON recurring_items
+  ON public.recurring_items
   FOR ALL
   TO public
   USING (
