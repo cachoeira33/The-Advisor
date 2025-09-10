@@ -26,15 +26,6 @@ CREATE TABLE IF NOT EXISTS recurring_items (
 -- Enable Row Level Security
 ALTER TABLE recurring_items ENABLE ROW LEVEL SECURITY;
 
--- RLS Policy - users can only access their business's recurring items
-CREATE POLICY "Recurring items access via business" ON recurring_items
-  FOR ALL USING (
-    EXISTS (
-      SELECT 1 FROM user_business_roles
-      WHERE user_id = auth.uid()
-      AND business_id = recurring_items.business_id
-    )
-  );
 
 -- Create trigger for updated_at
 CREATE TRIGGER update_recurring_items_updated_at 
