@@ -26,7 +26,9 @@ CREATE TABLE IF NOT EXISTS dashboard_layouts (
 ALTER TABLE dashboard_layouts ENABLE ROW LEVEL SECURITY;
 
 -- RLS Policy - users can only access their own dashboard layouts
-DROP POLICY IF EXISTS "Users can manage own dashboard layouts" ON dashboard_layouts;
+DROP POLICY IF EXISTS "Users can manage own dashboard layouts" ON public.dashboard_layouts;
+
+
 CREATE POLICY "Users can manage own dashboard layouts" ON dashboard_layouts
   FOR ALL USING (auth.uid() = user_id);
 
