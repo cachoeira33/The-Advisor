@@ -1,9 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { CreditCard } from 'lucide-react';
+import { CreditCard, MoreHorizontal, ArrowUpRight, ArrowDownRight, Edit, Trash2 } from 'lucide-react';
 import { format } from 'date-fns';
-import { MoreHorizontal, ArrowUpRight, ArrowDownRight, Edit, Trash2 } from 'lucide-react';
-import { Transaction } from '../../types';
+import { Transaction } from '../../types'; // Certifique-se de que o caminho para seus tipos está correto
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 
@@ -14,9 +13,9 @@ interface TransactionTableProps {
   loading?: boolean;
 }
 
-export function TransactionTable({ 
-  transactions, 
-  onEdit, 
+export function TransactionTable({
+  transactions,
+  onEdit,
   onDelete,
   loading = false
 }: TransactionTableProps) {
@@ -54,6 +53,7 @@ export function TransactionTable({
       </Card>
     );
   }
+
   if (transactions.length === 0) {
     return (
       <Card className="p-12 text-center">
@@ -77,21 +77,11 @@ export function TransactionTable({
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Transaction
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Category
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Amount
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Date
-              </th>
-              <th className="relative px-6 py-3">
-                <span className="sr-only">Actions</span>
-              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Transaction</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+              <th className="relative px-6 py-3"><span className="sr-only">Actions</span></th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -111,12 +101,8 @@ export function TransactionTable({
                       )}
                     </div>
                     <div className="ml-4">
-                      <div className="text-sm font-medium text-gray-900">
-                        {transaction.description}
-                      </div>
-                      <div className="text-sm text-gray-500">
-                        {transaction.reference}
-                      </div>
+                      <div className="text-sm font-medium text-gray-900">{transaction.description}</div>
+                      <div className="text-sm text-gray-500">{transaction.reference}</div>
                     </div>
                   </div>
                 </td>
@@ -134,39 +120,16 @@ export function TransactionTable({
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {format(new Date(transaction.date), 'MMM dd, yyyy')}
                 </td>
+                {/* ESTA É A SEÇÃO QUE FOI CORRIGIDA */}
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <div className="flex items-center justify-end space-x-2">
                     {onEdit && (
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => onEdit(transaction)}
-                        title="Edit transaction"
-                      >
+                      <Button variant="ghost" size="sm" onClick={() => onEdit(transaction)} title="Edit transaction">
                         <Edit className="w-4 h-4" />
                       </Button>
                     )}
                     {onDelete && (
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => onDelete(transaction.id)}
-                        title="Delete transaction"
-                        className="text-red-600 hover:text-red-700"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </Button>
-                    )}
-                  </div>
-                      </Button>
-                    {onDelete && (
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => onDelete(transaction.id)}
-                        title="Delete transaction"
-                        className="text-red-600 hover:text-red-700"
-                      >
+                      <Button variant="ghost" size="sm" onClick={() => onDelete(transaction.id)} title="Delete transaction" className="text-red-600 hover:text-red-700">
                         <Trash2 className="w-4 h-4" />
                       </Button>
                     )}
