@@ -242,7 +242,7 @@ export function DashboardPage() {
       case 'quick-actions':
         return (
           <QuickActions
-            actions={quickActions}
+            actions={commonQuickActions}
             title="Quick Actions"
         />
         );
