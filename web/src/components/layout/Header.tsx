@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { useTranslation } from 'react-i18next';
 import { Search, Globe } from 'lucide-react';
 import { Button } from '../ui/Button';
